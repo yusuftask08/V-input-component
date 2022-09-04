@@ -1,0 +1,138 @@
+@mixin size($padding-y, $padding-x, $size, $label-size, $icon-width, $icon-height) {
+    & .input {
+        padding: $padding-y $padding-x;
+        font-size: $size;
+    }
+
+    & .input-label {
+        font-size: $label-size;
+    }
+
+    & .right-icon {
+
+        .clear-icon {
+            & svg {
+                width: $icon-width - 5px;
+                height: $icon-height - 5px;
+                margin-right: 5px;
+            }
+        }
+
+    }
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+
+    & .input {
+        border: none;
+        background-color: rgba(195, 194, 194, 0.197);
+        border-radius: 8px;
+        padding: 12px 16px;
+        box-sizing: border-box;
+        width: 296px;
+
+        &:focus-visible {
+            outline: 2px solid #00aeff;
+            background-color: #ffff;
+        }
+
+        &::placeholder {
+            color: #9b9b9b;
+        }
+    }
+
+    & .right-icon {
+        position: absolute;
+        right: 0;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    & .error {
+        outline: 2px solid #fa3f3f;
+        color: #fa3f3f;
+        background-color: #fef2f2;
+
+        &:focus-visible {
+            @extend .error
+        }
+
+        &:hover {
+            @extend .error
+        }
+    }
+
+    & .disabled {
+        outline: none;
+        background-color: #f5f5f5;
+
+        &:hover {
+            @extend .disabled
+        }
+
+        &:focus-visible {
+            @extend .disabled
+        }
+
+        &::placeholder {
+            color: #cccccc;
+        }
+    }
+
+}
+
+.helper-container {
+    display: flex;
+    justify-content: space-between;
+
+    & .helper-text {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        color: #646464;
+        font-size: 12px;
+        font-weight: 600;
+        padding: {
+            top: 5px;
+            left: 8px;
+            right: 8px;
+        }
+    }
+
+    & .characters-limit {
+        @extend .helper-text
+    }
+
+    & .helper-right {
+        justify-content: end;
+    }
+
+    & .eror-helper {
+        color: #fa3f3f;
+    }
+}
+
+.input-label {
+    display: block;
+    text-align: start;
+    margin-bottom: 5px;
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: 484848;
+}
+
+.input-large {
+    @include size(16px, 16px, 16px, 14px, 20px, 20px);
+}
+
+.input-medium {
+    @include size(14px, 16px, 14px, 12px, 16px, 16px);
+}
+
+.input-small {
+    @include size(10px, 16px, 14px, 12px, 16px, 16px);
+}
